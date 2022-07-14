@@ -1,7 +1,7 @@
 const booksModel = require('../models/booksModel')
 const userModel = require('../models/userModel')
 const reviewModel = require('../models/reviewModel')
-const validator = require("validator")
+// const validator = require("validator")
 const { isValidTName, isValid, isValidIsbn, isValidDate, isValidObjectId, isValidBody, isValidName } = require('../validation/validation')
 
 
@@ -37,7 +37,7 @@ const createBooks = async function (req, res) {
         if (!isValid(category)) return res.status(400).send({ status: false, message: 'please enter category Dont left Empty' })
         if (!isValid(subcategory)) return res.status(400).send({ status: false, message: 'please enter subcategory Dont left Empty' })
         if (!isValid(releasedAt)) return res.status(400).send({ status: false, message: 'please enter release date Dont left Empty' })
-        if (!validator.isISBN(ISBN)) return res.status(400).send({ status: false, message: "please enter valid ISBN" })
+        if (!isValidIsbn(ISBN)) return res.status(400).send({ status: false, message: "please enter valid ISBN" })
         if (!isValidDate(releasedAt)) return res.status(400).send({ status: false, message: "please enter the date in 'YYYY-MM-DD' format" })
 
         //——————————————————————————————Check Unique Title———————————
